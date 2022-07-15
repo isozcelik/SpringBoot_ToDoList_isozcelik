@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!-- <html lang="en"> -->
+<html th:lang="${#locale.language}" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.css" rel="stylesheet" />
+    <!-- seo -->
+    <meta name="keywords" content="html5,css3,js,jquery,bootstrap,react,es5,es6"/>
+    <meta name="description" content="one pages, html5,css3,js,jquery,bootstrap,seo"/>
+</head>
+
+<body>
+<section class="vh-100" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-lg-9 col-xl-7">
+                <div class="card rounded-3">
+                    <div class="card-body p-4">
+
+                        <h4 class="text-center my-3 pb-3">To Do App</h4>
+
+                        <form class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
+                            <div class="col-12">
+                                <div class="form-outline">
+                                    <input type="text" id="form1" class="form-control" />
+                                    <label class="form-label" for="form1">Enter a task here</label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-success ms-1">Get tasks</button>
+                            </div>
+                        </form>
+
+                        <table class="table mb-4">
+                            <thead>
+                            <tr>
+                                <th scope="col" th:text="#{todolist_id}"></th>
+                                <th scope="col" th:text="#{todolist_note}"></th>
+                                <th scope="col" th:text="#{todolist_status}"></th>
+                                <th scope="col" th:text="#{todolist_actions}"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="todolist:${list_key}">
+                                <th scope="row" th:text="${todolist.id}"></th>
+                                <td th:text="${todolist.note}"></td>
+                                <td>In progress</td>
+                                <td>
+                                    <a th:href="@{/delete/todolist/{id}(id=${todolist.id})}"
+                                       th:onclick="if(!(confirm('Are you sure you want to delete?'))) return false"
+                                       class="btn btn-danger">Delete</a>
+                                    <a class="btn btn-warning">Update</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+<!-- MDB -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.js"></script>
+<!-- Bootstrap JavaScript Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+
+</html>
