@@ -79,4 +79,33 @@ public class ToDoListController {
         }
         return "redirect:/todolist";
     }
+
+    //Update Get
+    //http://localhost:8080/update/todolist/1
+    @GetMapping("update/todolist/{id}")
+    public String updateToDoListGetForm(@PathVariable(name = "id") Long id, Model model) {
+        Optional<ToDoListEntity> optionalEntity = repository.findById(id);
+        if (optionalEntity.isPresent()) {
+            model.addAttribute("update_key", optionalEntity.get());
+        } else {
+            model.addAttribute("update_key", "failed");
+        }
+        return "todolist_update";
+    }
+
+    //Update Post
+    //http://localhost:8080/update/todolist/1
+    @PostMapping("update/todolist/{id}")
+    public String updateToDoListPostForm(@Valid @ModelAttribute("update_key") ToDoListDto toDoListDto, @PathVariable(name="id")Long id,BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "todolist_update";
+        }
+        Optional<ToDoListEntity> optionalEntity =repository.findById(id);
+        if (optionalEntity.isPresent()){
+            ToDoListEntity entity =optionalEntity.get();
+            entity.setNote(toDoListDto.getNote());
+            repository.save(entity);
+        }
+        return "redirect:/todolist";
+    }
 }
