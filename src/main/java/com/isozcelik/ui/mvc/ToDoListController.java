@@ -38,9 +38,10 @@ public class ToDoListController {
     public String getToDoList(Model model) {
         List<ToDoListEntity> list = repository.findAll();
         model.addAttribute("list_key", list);
+        model.addAttribute("save_key", new ToDoListDto()); // buradaki gibi
         return "todolist";
     }
-/*
+/*  Tek bir html sayfası için aynı url'e sahip 2 adet getmapping verilemez. Onun yerine tek getmapping içerisinde 2 adet addAttribute verilebilir.
     //Save listelemenin olduğu sayfada add yapamadım.
     //GetMapping
     //http://localhost:8080/todolist
@@ -49,7 +50,7 @@ public class ToDoListController {
         model.addAttribute("save_key", new ToDoListDto());
         return "todolist";
     }
-
+*/
     //Save
     //PostMapping
     //http://localhost:8080/todolist
@@ -64,7 +65,6 @@ public class ToDoListController {
         repository.save(toDoListEntity);
         return "redirect:/todolist";
     }
-    */
 
     //Delete
     //http://localhost:8080/delete/todolist/1

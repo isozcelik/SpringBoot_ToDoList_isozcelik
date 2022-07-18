@@ -28,11 +28,11 @@
 
                         <h4 class="text-center my-3 pb-3">To Do App</h4>
 
-                        <form method="post" class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
+                        <form th:action="@{/todolist}" th:object="${save_key}" method="post" class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
                             <div class="col-12">
                                 <div class="form-outline">
-                                    <input type="text" id="form1" class="form-control" />
-                                    <label class="form-label" for="form1">Enter a task here</label>
+                                    <input type="text" id="note" class="form-control" th:field="*{note}" required/>
+                                    <label class="form-label" for="note">Enter a task here</label>
                                 </div>
                             </div>
 
