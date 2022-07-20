@@ -17,4 +17,6 @@ public class ToDoListDto {
 
     @NotEmpty(message="Not Girmediniz")
     private String note;
+
+    private String status;
 }

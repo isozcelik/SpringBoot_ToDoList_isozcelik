@@ -31,7 +31,7 @@
                         <form method="post" th:action="@{/update/todolist/{id}(id=${update_key.id})}" th:object="${update_key}" class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
                             <div class="col-12">
                                 <div class="form-outline">
-                                    <input type="text" id="note" class="form-control" th:field="*{note}" required/>
+                                    <input type="text" id="note" class="form-control" th:field="*{note}" maxlength="255" required/>
                                     <label class="form-label" for="note">Enter a task here</label>
                                     <!-- <label th:if="${#fields.hasErrors('note')}" th:errors="*{note}"  class="form-label text-danger" >Kullanıcı Adı</label> -->
                                 </div>

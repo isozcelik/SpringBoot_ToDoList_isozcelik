@@ -27,7 +27,7 @@ public class ToDoListController {
     public String saveToDoList() {
         int i = 0;
         for (i = 0; i < 10; i++) {
-            repository.save(ToDoListEntity.builder().note("not: " + i).build());
+            repository.save(ToDoListEntity.builder().note("not: " + i).status("In Progress").build());
         }
         return i + " adet not kaydedildi";
     }
@@ -62,6 +62,7 @@ public class ToDoListController {
         }
         ToDoListEntity toDoListEntity = new ToDoListEntity();
         toDoListEntity.setNote(toDoListDto.getNote());
+        toDoListEntity.setStatus("In Progress");
         repository.save(toDoListEntity);
         return "redirect:/todolist";
     }

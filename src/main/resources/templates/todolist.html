@@ -16,6 +16,11 @@
     <!-- seo -->
     <meta name="keywords" content="html5,css3,js,jquery,bootstrap,react,es5,es6"/>
     <meta name="description" content="one pages, html5,css3,js,jquery,bootstrap,seo"/>
+    <style>
+        .green{
+            color: green;
+        }
+    </style>
 </head>
 
 <body>
@@ -31,7 +36,7 @@
                         <form th:action="@{/todolist}" th:object="${save_key}" method="post" class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
                             <div class="col-12">
                                 <div class="form-outline">
-                                    <input type="text" id="note" class="form-control" th:field="*{note}" required/>
+                                    <input type="text" id="note" class="form-control" th:field="*{note}" maxlength="255" required/>
                                     <label class="form-label" for="note">Enter a task here</label>
                                 </div>
                             </div>
@@ -48,7 +53,7 @@
                         <table class="table mb-4">
                             <thead>
                             <tr>
-                                <th scope="col" th:text="#{todolist_id}"></th>
+                                <th scope="col" th:text="#{todolist_checked}"></th>
                                 <th scope="col" th:text="#{todolist_note}"></th>
                                 <th scope="col" th:text="#{todolist_status}"></th>
                                 <th scope="col" th:text="#{todolist_actions}"></th>
@@ -56,9 +61,9 @@
                             </thead>
                             <tbody>
                             <tr th:each="todolist:${list_key}">
-                                <th scope="row" th:text="${todolist.id}"></th>
+                                <td><input type="checkbox" id="myCheckbox" class="form-check-input me-2"/></td>
                                 <td th:text="${todolist.note}"></td>
-                                <td>In progress</td>
+                                <td id="kutu" class="green" th:text="${todolist.status}"></td>
                                 <td>
                                     <a th:href="@{/delete/todolist/{id}(id=${todolist.id})}"
                                        th:onclick="if(!(confirm('Are you sure you want to delete?'))) return false"
@@ -75,6 +80,22 @@
         </div>
     </div>
 </section>
+<script>
+    var kutu=document.querySelector("#kutu");
+    const checkbox = document.getElementById('myCheckbox')
+
+    checkbox.addEventListener('change', (event) => {
+
+        if (event.currentTarget.checked) {
+            kutu.style.color="#ff0000";
+            kutu.innerHTML="Done";
+        } else {
+            kutu.style.color="#008000";
+            kutu.innerHTML="In Progress";
+            <!--	kutu.style.backgroundColor="#008000";	-->
+        }
+    })
+</script>
 </body>
 <!-- MDB -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.js"></script>

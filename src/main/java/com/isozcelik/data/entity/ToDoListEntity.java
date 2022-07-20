@@ -20,4 +20,7 @@ public class ToDoListEntity extends BaseEntity {
 
     @Column(name="note")
     private String note;
+
+    @Column(name="status")
+    private String status;
 }
